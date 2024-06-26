@@ -32,28 +32,29 @@
 		<div id="photo-box">
 			<img id="target" src="https://picsum.photos/400/300" />
 			<hr />
-			<button>New</button>
-			<button class="green">Add</button>
+			<button onclick="newImage();">New</button>
+			<button class="green" onclick="repImage();">Add</button>
 			<button class="light">Edit</button>
 		</div>
 		<!-- Email form -->
 		<div id="form">
-			<form onSubmit="validateEmail();return false">
+			<form>
 				<label for="email">Email:</label>
 				<input type="email" name="email" id="email" />
-				<button class="green" type="submit">Add</button>
+				<button class="green" onClick="validateEmail(); return false">
+					Add
+				</button>
 			</form>
 		</div>
 		<!-- Email display -->
 		<div id="email-display">
 			<h2>Email:</h2>
 			<h1 id="current-email"></h1>
-			<button class="light">Create new</button>
+			<button class="light" onclick="newEmail();">Create new</button>
 		</div>
 		<!-- Photo collection -->
 		<div id="collection">
 			<h1>Collection:</h1>
-			<img id="destination" src="" />
 		</div>
 	</body>
 </html>

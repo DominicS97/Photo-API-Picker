@@ -1,0 +1,94 @@
+// Base
+
+body {
+	background-color: #e1f5fe;
+}
+
+div {
+	width: Max(200px, 50vw);
+	background-color: #fff;
+	height: auto;
+	margin-top: 5vh;
+	margin-bottom: 5vh;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 5px;
+	border: #212121 solid 2px;
+	border-radius: 10px;
+}
+
+// buttons
+
+button {
+	background-color: #424242;
+	color: #fff;
+	border: none;
+	border-radius: 3px;
+}
+
+.green {
+	background-color: #43a047;
+}
+
+.light {
+	background-color: #78909c;
+}
+
+// Image box
+
+#photo-box {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	row-gap: 5px;
+	column-gap: 20px;
+	margin-top: 10vh;
+	img {
+		width: 100%;
+		height: auto;
+		border-radius: 10px;
+	}
+	hr {
+		width: 100%;
+	}
+	img,
+	hr {
+		grid-column-start: span 2;
+	}
+	button:nth-of-type(3) {
+		grid-column-start: 2;
+	}
+}
+
+// Form
+
+#form {
+	form {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		row-gap: 5px;
+		column-gap: 20px;
+		label,
+		input {
+			grid-column-start: span 2;
+		}
+		button {
+			grid-column-start: 2;
+		}
+	}
+}
+
+// Email display
+
+#email {
+	display: none;
+}
+
+// Collection
+
+#collection {
+	img {
+		width: 100%;
+		height: auto;
+		border-radius: 10px;
+	}
+}

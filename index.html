@@ -38,16 +38,16 @@
 		</div>
 		<!-- Email form -->
 		<div id="form">
-			<form>
+			<form onSubmit="validateEmail();return false">
 				<label for="email">Email:</label>
-				<input type="email" name="email" />
-				<button type="submit" class="green">Add</button>
+				<input type="email" name="email" id="email" />
+				<button class="green" type="submit">Add</button>
 			</form>
 		</div>
 		<!-- Email display -->
-		<div id="email">
+		<div id="email-display">
 			<h2>Email:</h2>
-			<h1></h1>
+			<h1 id="current-email"></h1>
 			<button class="light">Create new</button>
 		</div>
 		<!-- Photo collection -->

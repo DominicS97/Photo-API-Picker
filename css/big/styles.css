@@ -378,7 +378,7 @@ button {
   grid-column-start: 2;
 }
 
-#email {
+#email-display {
   display: none;
 }
 

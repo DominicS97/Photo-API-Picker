@@ -3,6 +3,7 @@
 const IMG = document.getElementById("target");
 const COLLECTION = document.getElementById("collection-img");
 const START_IMG = IMG.src + "?random&t=";
+IMG.src = START_IMG;
 
 // Request new image
 
@@ -19,6 +20,9 @@ function repImage() {
 		// Iterating over the emails array to find current email
 		for (let i = 0; i < emails.length; i++) {
 			if (emails[i] === CUR_EMAIL.innerHTML) {
+				// Set collection back to current email
+				SELECT.value = CUR_EMAIL.innerHTML;
+				switchCollection(CUR_EMAIL.innerHTML);
 				// Adding photo to collection and to the relevant subarray
 				COLLECTION.innerHTML += `<img src="${IMG.src}" />`;
 				collections[i].push(IMG.src);
@@ -109,14 +113,13 @@ function newEmail() {
 
 const SELECT = document.getElementById("select");
 
-function switchCollection() {
-	let cur_select = SELECT.value;
+function switchCollection(switch_email) {
 	// Don't search for email when menu is returned to default
-	if (cur_select === "select") {
+	if (switch_email === "select") {
 	} else {
 		// Iterating over the emails array to find selected email
 		for (let i = 0; i < emails.length; i++) {
-			if (emails[i] === cur_select) {
+			if (emails[i] === switch_email) {
 				// Clearing collection
 				COLLECTION.innerHTML = ``;
 				// Adding all collection images

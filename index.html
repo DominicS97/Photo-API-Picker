@@ -59,7 +59,11 @@
 		<div id="collection">
 			<h1>Collection:</h1>
 			<label for="select">Choose collection:</label>
-			<select name="select" id="select" onchange="switchCollection();">
+			<select
+				name="select"
+				id="select"
+				onchange="switchCollection(SELECT.value);"
+			>
 				<option value="select">Select</option>
 			</select>
 			<div id="collection-img"></div>

@@ -309,19 +309,31 @@ template {
   display: none;
 }
 
-header {
+header,
+footer {
   width: 100%;
   height: 50px;
   background-color: #fff;
+  padding-top: 15px;
+  text-align: center;
 }
-header h1 {
+header h1,
+footer h1 {
   margin: auto;
   height: 100%;
-  text-align: center;
+}
+header p,
+footer p {
+  font-weight: bold;
 }
 
 body {
+  width: 100%;
   background-color: #e1f5fe;
+  font-family: "Nunito", sans-serif;
+}
+body h2 {
+  margin-top: auto;
 }
 
 div {
@@ -343,12 +355,21 @@ button {
   border: none;
   border-radius: 3px;
 }
+button:hover, button:focus {
+  background-color: #616161;
+}
 
 .green {
   background-color: #43a047;
 }
+.green:hover, .green:focus {
+  background-color: #4caf50;
+}
 
 .light {
+  background-color: #607d8b;
+}
+.light:hover, .light:focus {
   background-color: #78909c;
 }
 
@@ -380,19 +401,44 @@ button {
   grid-template-columns: 1fr 1fr;
   row-gap: 5px;
   column-gap: 20px;
+  padding: 15px;
 }
 #form form label,
 #form form input {
   grid-column-start: span 2;
 }
+#form form label {
+  font-weight: bold;
+  font-size: 1.5em;
+}
 #form form button {
   grid-column-start: 2;
 }
-
-#email-display {
-  display: none;
+#form form input {
+  border: 1px solid #cfd8dc;
+  background-color: #eceff1;
+  border-radius: 2px;
 }
 
+#email-display {
+  width: 380px;
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 5px;
+  column-gap: 20px;
+  padding: 15px;
+}
+#email-display h2 {
+  grid-column-start: span 2;
+}
+#email-display button {
+  grid-column-start: 2;
+}
+
+#collection {
+  width: 380px;
+  padding: 15px;
+}
 #collection img {
   width: 100%;
   height: auto;

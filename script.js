@@ -63,7 +63,7 @@ function validateEmail() {
 			if (checkUnique(s)) {
 				// Remove form and show current email div
 				FORM.style.display = "none";
-				EMAIL_DISPLAY.style.display = "block";
+				EMAIL_DISPLAY.style.display = "grid";
 				CUR_EMAIL.innerHTML = `${s}`;
 				// Add to select menu
 				SELECT.innerHTML += `<option value="${s}">${s}</option>`;
@@ -100,7 +100,7 @@ function checkUnique(email) {
 
 function newEmail() {
 	// Remove current email div and show form
-	FORM.style.display = "block";
+	FORM.style.display = "grid";
 	EMAIL_DISPLAY.style.display = "none";
 	// Reset collection display
 	COLLECTION.innerHTML = ``;

@@ -26,47 +26,55 @@
 			/>
 		</noscript>
 	</head>
-	<header>
-		<h1>Photo Picker</h1>
-	</header>
 	<body>
-		<!-- Photo box -->
-		<div id="photo-box">
-			<img id="target" src="https://picsum.photos/400/300" />
-			<hr />
-			<button onclick="newImage();">New</button>
-			<button class="green" onclick="repImage();">Add</button>
-			<!-- <button class="light">Edit</button> -->
-		</div>
-		<!-- Email form -->
-		<div id="form">
-			<form onsubmit="return false">
-				<label for="email">Email:</label>
-				<input type="email" name="email" id="email" />
-				<button class="green" onClick="validateEmail(); return false">
-					New Collection
-				</button>
-			</form>
-		</div>
-		<!-- Email display -->
-		<div id="email-display">
-			<h2>Email:</h2>
-			<h2 id="current-email"></h2>
-			<button class="light" onclick="newEmail();">Create new</button>
-		</div>
-		<!-- Photo collection -->
-		<div id="collection">
-			<h1>Collection:</h1>
-			<label for="select">View collection:</label>
-			<select
-				name="select"
-				id="select"
-				onchange="switchCollection(SELECT.value);"
-			>
-				<option value="select">Select</option>
-			</select>
-			<div id="collection-img"></div>
-		</div>
+		<header>
+			<h1>Photo Picker</h1>
+		</header>
+		<main>
+			<!-- Photo box -->
+			<div id="photo-box">
+				<img id="target" src="https://picsum.photos/400/300" />
+				<hr />
+				<button onclick="newImage();">New</button>
+				<button class="green" onclick="repImage();">Add</button>
+				<!-- <button class="light">Edit</button> -->
+			</div>
+			<!-- Email form -->
+			<div id="form">
+				<form onsubmit="return false">
+					<label for="email">Email:</label>
+					<input type="email" name="email" id="email" />
+					<button
+						class="green"
+						onClick="validateEmail(); return false"
+					>
+						New Collection
+					</button>
+				</form>
+			</div>
+			<!-- Email display -->
+			<div id="email-display">
+				<h2>Email:</h2>
+				<h2 id="current-email"></h2>
+				<button class="light" onclick="newEmail();">Create new</button>
+			</div>
+			<!-- Photo collection -->
+			<div id="collection">
+				<h2>Collection:</h2>
+				<label for="select">View collection:</label>
+				<select
+					name="select"
+					id="select"
+					onchange="switchCollection(SELECT.value);"
+				>
+					<option value="select">Select</option>
+				</select>
+				<div id="collection-img"></div>
+			</div>
+		</main>
+		<footer>
+			<p>&copy; Dominic Sutcliffe 2024</p>
+		</footer>
 		<script src="script.js"></script>
 	</body>
 </html>

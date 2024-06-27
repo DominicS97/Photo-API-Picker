@@ -1,7 +1,7 @@
 // Image manipulation
 
 const IMG = document.getElementById("target");
-const COLLECTION = document.getElementById("collection");
+const COLLECTION = document.getElementById("collection-img");
 const START_IMG = IMG.src + "?random&t=";
 
 // Request new image
@@ -38,6 +38,8 @@ function newCollection(email) {
 	emails.push(email);
 	// Push empty array to collections
 	collections.push([]);
+	// Clear current collection display
+	COLLECTION.innerHTML = ``;
 }
 
 // Email validation
@@ -59,6 +61,8 @@ function validateEmail() {
 				FORM.style.display = "none";
 				EMAIL_DISPLAY.style.display = "block";
 				CUR_EMAIL.innerHTML = `${s}`;
+				// Add to select menu
+				SELECT.innerHTML += `<option value="${s}">${s}</option>`;
 				// Create new collection
 				newCollection(s);
 			} else {
@@ -95,7 +99,31 @@ function newEmail() {
 	FORM.style.display = "block";
 	EMAIL_DISPLAY.style.display = "none";
 	// Reset collection display
-	COLLECTION.innerHTML = `<h1>Collection:</h1>`;
+	COLLECTION.innerHTML = ``;
 	// Clear current email
 	CUR_EMAIL.innerHTML = "";
+	document.getElementById("email").value = "";
+}
+
+// Select menu manipulation
+
+const SELECT = document.getElementById("select");
+
+function switchCollection() {
+	let cur_select = SELECT.value;
+	// Don't search for email when menu is returned to default
+	if (cur_select === "select") {
+	} else {
+		// Iterating over the emails array to find selected email
+		for (let i = 0; i < emails.length; i++) {
+			if (emails[i] === cur_select) {
+				// Clearing collection
+				COLLECTION.innerHTML = ``;
+				// Adding all collection images
+				let selected_collection = collections[i];
+				for (let j = 0; j < selected_collection.length; j++)
+					COLLECTION.innerHTML += `<img src="${selected_collection[j]}" />`;
+			}
+		}
+	}
 }

@@ -1,3 +1,16 @@
+// Header
+
+header {
+	width: 100vw;
+	height: 50px;
+	background-color: #fff;
+	h1 {
+		margin: auto;
+		height: 100%;
+		text-align: center;
+	}
+}
+
 // Base
 
 body {
@@ -5,7 +18,7 @@ body {
 }
 
 div {
-	width: Max(200px, 50vw);
+	width: 400px;
 	background-color: #fff;
 	height: auto;
 	margin-top: 5vh;
@@ -91,4 +104,11 @@ button {
 		height: auto;
 		border-radius: 10px;
 	}
+}
+
+#collection-img {
+	border: none;
+	width: auto;
+	height: auto;
+	margin-bottom: auto;
 }

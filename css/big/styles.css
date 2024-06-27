@@ -309,12 +309,23 @@ template {
   display: none;
 }
 
+header {
+  width: 100vw;
+  height: 50px;
+  background-color: #fff;
+}
+header h1 {
+  margin: auto;
+  height: 100%;
+  text-align: center;
+}
+
 body {
   background-color: #e1f5fe;
 }
 
 div {
-  width: max(200px, 50vw);
+  width: 400px;
   background-color: #fff;
   height: auto;
   margin-top: 5vh;
@@ -386,4 +397,11 @@ button {
   width: 100%;
   height: auto;
   border-radius: 10px;
+}
+
+#collection-img {
+  border: none;
+  width: auto;
+  height: auto;
+  margin-bottom: auto;
 }/*# sourceMappingURL=styles.css.map */

@@ -29,7 +29,7 @@ function repImage() {
 			}
 		}
 	} else {
-		alert("No email has been set");
+		alert("Photo cannot be added with no Collection");
 	}
 }
 
@@ -71,7 +71,7 @@ function validateEmail() {
 				newCollection(s);
 			} else {
 				// Non-unique email detected
-				alert("Email has already been used");
+				alert("Collection already exists for this Email");
 				email.value = "";
 				s = "";
 			}
@@ -113,6 +113,8 @@ function newEmail() {
 
 const SELECT = document.getElementById("select");
 
+// Function is passed a variable so that collection can be changed by the user using the
+// select menu and also by the repImage function whenever a new image is added
 function switchCollection(switch_email) {
 	// Don't search for email when menu is returned to default
 	if (switch_email === "select") {

@@ -2,14 +2,64 @@
 
 const IMG = document.getElementById("target");
 const COLLECTION = document.getElementById("collection-img");
-const START_IMG = IMG.src + "?random&t=";
+let START_IMG = IMG.src + "?random&t=";
 IMG.src = START_IMG;
+
+// Image settings
+
+const INPUT_SWITCH = document.getElementById("greyscale");
+let greyscale = false;
+const INPUT_RANGE = document.getElementById("blur-range");
+let blurnum = 0;
+const READOUT = document.getElementById("blur-status");
+let change_made = false;
+
+function toggleGreyscale() {
+	greyscale = INPUT_SWITCH.checked;
+	change_made = true;
+}
+
+function toggleBlur() {
+	blurnum = INPUT_RANGE.value;
+	change_made = true;
+	if (blurnum === 0) {
+		READOUT.innerHTML = `No Blur`;
+	} else {
+		READOUT.innerHTML = `Blur Level ${blurnum}`;
+	}
+}
+
+const PHOTO_BOX = document.getElementById("photo-box");
+const SETTINGS = document.getElementById("settings");
+
+function enableSettings() {
+	SETTINGS.style.display = "grid";
+	PHOTO_BOX.style.display = "none";
+}
+
+function saveSettings() {
+	SETTINGS.style.display = "none";
+	PHOTO_BOX.style.display = "grid";
+	if (change_made) {
+		change_made = false;
+		newImage();
+	}
+}
 
 // Request new image
 
 function newImage() {
+	let newImage = START_IMG;
 	// Prevents browser from caching the old image
-	IMG.src = START_IMG + new Date().getTime();
+	newImage += new Date().getTime();
+	// Check greyscale setting
+	if (greyscale) {
+		newImage += "&grayscale";
+	}
+	if (blurnum != 0) {
+		newImage += `&blur=${blurnum}`;
+	}
+	IMG.src = newImage;
 }
 
 // Add image to collection
@@ -55,33 +105,30 @@ const CUR_EMAIL = document.getElementById("current-email");
 function validateEmail() {
 	// Regex copied from portfolio project
 	const email = document.getElementById("email");
-	email.addEventListener("blur", () => {
-		let regex =
-			/^([_\-\.0-9a-zA-Z]+)@([_\-\.0-9a-zA-Z]+)\.([a-zA-Z]){2,7}$/;
-		let s = email.value;
-		if (regex.test(s)) {
-			if (checkUnique(s)) {
-				// Remove form and show current email div
-				FORM.style.display = "none";
-				EMAIL_DISPLAY.style.display = "grid";
-				CUR_EMAIL.innerHTML = `${s}`;
-				// Add to select menu
-				SELECT.innerHTML += `<option value="${s}">${s}</option>`;
-				// Create new collection
-				newCollection(s);
-			} else {
-				// Non-unique email detected
-				alert("Collection already exists for this Email");
-				email.value = "";
-				s = "";
-			}
+	let regex = /^([_\-\.0-9a-zA-Z]+)@([_\-\.0-9a-zA-Z]+)\.([a-zA-Z]){2,7}$/;
+	let s = email.value;
+	if (regex.test(s)) {
+		if (checkUnique(s)) {
+			// Remove form and show current email div
+			FORM.style.display = "none";
+			EMAIL_DISPLAY.style.display = "grid";
+			CUR_EMAIL.innerHTML = `${s}`;
+			// Add to select menu
+			SELECT.innerHTML += `<option value="${s}">${s}</option>`;
+			// Create new collection
+			newCollection(s);
 		} else {
-			// Regex not passed
-			alert("Email is not valid");
+			// Non-unique email detected
+			alert("Collection already exists for this Email");
 			email.value = "";
 			s = "";
 		}
-	});
+	} else {
+		// Regex not passed
+		alert("Email is not valid");
+		email.value = "";
+		s = "";
+	}
 }
 
 // Check unique email function separated for readability

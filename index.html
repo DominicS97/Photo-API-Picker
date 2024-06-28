@@ -37,11 +37,40 @@
 				<hr />
 				<button onclick="newImage();">New</button>
 				<button class="green" onclick="repImage();">Add</button>
-				<!-- <button class="light">Edit</button> -->
+				<button class="light" onclick="enableSettings();">
+					Settings
+				</button>
+			</div>
+			<!-- Settings menu -->
+			<div id="settings">
+				<h2>Settings</h2>
+				<label>Greyscale:</label>
+				<label class="switch">
+					<input
+						type="checkbox"
+						id="greyscale"
+						onchange="toggleGreyscale();"
+					/>
+					<span class="slider-round"></span>
+				</label>
+				<label>Blur:</label>
+				<input
+					type="range"
+					min="0"
+					max="10"
+					value="0"
+					class="slider"
+					id="blur-range"
+					onchange="toggleBlur();"
+				/>
+				<p id="blur-status">No Blur</p>
+				<button class="light" onclick="saveSettings();">
+					Save Settings
+				</button>
 			</div>
 			<!-- Email form -->
 			<div id="form">
-				<form onsubmit="return false">
+				<form>
 					<label for="email">Email:</label>
 					<input type="email" name="email" id="email" />
 					<button
@@ -56,7 +85,9 @@
 			<div id="email-display">
 				<h2>Email:</h2>
 				<h2 id="current-email"></h2>
-				<button class="light" onclick="newEmail();">Create new</button>
+				<button class="light" onclick="newEmail();">
+					New Collection
+				</button>
 			</div>
 			<!-- Photo collection -->
 			<div id="collection">

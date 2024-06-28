@@ -402,6 +402,14 @@ button:hover, button:focus {
   margin-top: 10vh;
   height: 375px;
 }
+#settings label,
+#settings button {
+  grid-column-start: 1;
+}
+#settings #switch,
+#settings p {
+  grid-column-start: 2;
+}
 
 .switch {
   position: relative;
@@ -508,6 +516,10 @@ input:checked + .slider-round:before {
   width: auto;
   height: auto;
   margin-bottom: auto;
+}
+
+#cache {
+  display: none;
 }
 
 footer {

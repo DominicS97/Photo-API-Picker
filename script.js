@@ -2,6 +2,7 @@
 
 const IMG = document.getElementById("target");
 const COLLECTION = document.getElementById("collection-img");
+const CACHE = document.getElementById("cache");
 let START_IMG = IMG.src + "?random&t=";
 IMG.src = START_IMG;
 
@@ -14,11 +15,13 @@ let blurnum = 0;
 const READOUT = document.getElementById("blur-status");
 let change_made = false;
 
+// Saves greyscale setting
 function toggleGreyscale() {
 	greyscale = INPUT_SWITCH.checked;
 	change_made = true;
 }
 
+// Saves blur setting
 function toggleBlur() {
 	blurnum = INPUT_RANGE.value;
 	change_made = true;
@@ -32,11 +35,14 @@ function toggleBlur() {
 const PHOTO_BOX = document.getElementById("photo-box");
 const SETTINGS = document.getElementById("settings");
 
+// Opens settings menu
 function enableSettings() {
 	SETTINGS.style.display = "grid";
 	PHOTO_BOX.style.display = "none";
 }
 
+// Closes settings menu
+// New image if settings changed
 function saveSettings() {
 	SETTINGS.style.display = "none";
 	PHOTO_BOX.style.display = "grid";
@@ -75,6 +81,7 @@ function repImage() {
 				switchCollection(CUR_EMAIL.innerHTML);
 				// Adding photo to collection and to the relevant subarray
 				COLLECTION.innerHTML += `<img src="${IMG.src}" />`;
+				CACHE.innerHTML += `<img src="${IMG.src}" />`;
 				collections[i].push(IMG.src);
 			}
 		}

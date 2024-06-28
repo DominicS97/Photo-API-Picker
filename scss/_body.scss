@@ -94,6 +94,14 @@ button {
 
 // Settings menu
 #settings {
+	label,
+	button {
+		grid-column-start: 1;
+	}
+	#switch,
+	p {
+		grid-column-start: 2;
+	}
 	display: none;
 	grid-template-columns: 1fr 1fr;
 	row-gap: 5px;
@@ -216,7 +224,9 @@ input:checked + .slider-round:before {
 	height: auto;
 	margin-bottom: auto;
 }
-
+#cache {
+	display: none;
+}
 // Footer
 
 footer {

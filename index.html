@@ -45,7 +45,7 @@
 			<div id="settings">
 				<h2>Settings</h2>
 				<label>Greyscale:</label>
-				<label class="switch">
+				<label class="switch" id="switch">
 					<input
 						type="checkbox"
 						id="greyscale"
@@ -72,7 +72,7 @@
 			<div id="form">
 				<form>
 					<label for="email">Email:</label>
-					<input type="email" name="email" id="email" />
+					<input name="email" id="email" />
 					<button
 						class="green"
 						onClick="validateEmail(); return false"
@@ -102,6 +102,8 @@
 				</select>
 				<div id="collection-img"></div>
 			</div>
+			<!-- Image cache -->
+			<div id="cache"></div>
 		</main>
 		<footer>
 			<p>&copy; Dominic Sutcliffe 2024</p>

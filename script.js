@@ -83,6 +83,10 @@ function repImage() {
 				COLLECTION.innerHTML += `<img src="${IMG.src}" />`;
 				CACHE.innerHTML += `<img src="${IMG.src}" />`;
 				collections[i].push(IMG.src);
+				// Enable buttons
+				COLL_BTN.style.display = "grid";
+				COLL_DEL.style.display = "block";
+				ALL_DEL.style.display = "block";
 			}
 		}
 	} else {
@@ -121,7 +125,7 @@ function validateEmail() {
 			EMAIL_DISPLAY.style.display = "grid";
 			CUR_EMAIL.innerHTML = `${s}`;
 			// Add to select menu
-			SELECT.innerHTML += `<option value="${s}">${s}</option>`;
+			SELECT.innerHTML += `<option id="${s}" value="${s}">${s}</option>`;
 			// Create new collection
 			newCollection(s);
 		} else {
@@ -161,6 +165,10 @@ function newEmail() {
 	// Clear current email
 	CUR_EMAIL.innerHTML = "";
 	document.getElementById("email").value = "";
+	// Remove buttons
+	COLL_BTN.style.display = "none";
+	COLL_DEL.style.display = "none";
+	ALL_DEL.style.display = "none";
 }
 
 // Select menu manipulation
@@ -180,9 +188,84 @@ function switchCollection(switch_email) {
 				COLLECTION.innerHTML = ``;
 				// Adding all collection images
 				let selected_collection = collections[i];
-				for (let j = 0; j < selected_collection.length; j++)
+				for (let j = 0; j < selected_collection.length; j++) {
 					COLLECTION.innerHTML += `<img src="${selected_collection[j]}" />`;
+				}
+				// Enable buttons
+				COLL_BTN.style.display = "grid";
+				COLL_DEL.style.display = "block";
+				ALL_DEL.style.display = "block";
+				COLL_ADD.style.display = "block";
+				if (emails[i] === CUR_EMAIL.innerHTML) {
+					COLL_ADD.style.display = "none";
+				}
 			}
 		}
 	}
+}
+
+// Collection buttons
+
+const COLL_BTN = document.getElementById("collection-btn");
+const COLL_ADD = document.getElementById("collection-add");
+const COLL_DEL = document.getElementById("collection-del");
+const ALL_DEL = document.getElementById("all-del");
+
+function swapEmail() {
+	// Remove form and show current email div
+	FORM.style.display = "none";
+	EMAIL_DISPLAY.style.display = "grid";
+	CUR_EMAIL.innerHTML = SELECT.value;
+	COLL_ADD.style.display = "none";
+}
+
+function deleteSelected() {
+	// Iterating over the emails array to find selected email
+	for (let i = emails.length - 1; i >= 0; i--) {
+		if (emails[i] === SELECT.value) {
+			// Reset collection display
+			COLLECTION.innerHTML = ``;
+			// Remove buttons
+			COLL_BTN.style.display = "none";
+			COLL_DEL.style.display = "none";
+			ALL_DEL.style.display = "none";
+			// Remove from select menu
+			let select_element = document.getElementById(`${emails[i]}`);
+			select_element.parentNode.removeChild(select_element);
+			// If current collection deleted
+			if (emails[i] === CUR_EMAIL.innerHTML) {
+				// Remove current email div and show form
+				FORM.style.display = "grid";
+				EMAIL_DISPLAY.style.display = "none";
+				// Clear current email
+				CUR_EMAIL.innerHTML = "";
+				document.getElementById("email").value = "";
+			}
+			// Remove from emails array
+			emails.splice(i, 1);
+			// Remove collection from collections array
+			collections.splice(i, 1);
+		}
+	}
+}
+
+function deleteAll() {
+	// Remove from emails array
+	emails = [];
+	// Remove collection from collections array
+	collections = [];
+	// Reset collection display
+	COLLECTION.innerHTML = ``;
+	// Remove buttons
+	COLL_BTN.style.display = "none";
+	COLL_DEL.style.display = "none";
+	ALL_DEL.style.display = "none";
+	// Remove current email div and show form
+	FORM.style.display = "grid";
+	EMAIL_DISPLAY.style.display = "none";
+	// Clear current email
+	CUR_EMAIL.innerHTML = "";
+	document.getElementById("email").value = "";
+	// Clear select menu
+	SELECT.innerHTML = `<option value="select">Select</option>`;
 }

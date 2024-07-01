@@ -379,6 +379,13 @@ button:hover, button:focus {
   background-color: #4caf50;
 }
 
+.red {
+  background-color: #e53935;
+}
+.red:hover, .red:focus {
+  background-color: #f44336;
+}
+
 .light {
   background-color: #607d8b;
 }
@@ -536,12 +543,27 @@ input:checked + .slider-round:before {
   height: auto;
   border-radius: 10px;
 }
-
-#collection-img {
+#collection div {
   border: none;
   width: auto;
   height: auto;
   margin-bottom: auto;
+}
+
+#collection-btn {
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 5px;
+  column-gap: 20px;
+}
+#collection-btn #all-del,
+#collection-btn #collection-del {
+  grid-column-start: 2;
+}
+#collection-btn #collection-del,
+#collection-btn #collection-add,
+#collection-btn #all-del {
+  display: none;
 }
 
 #cache {

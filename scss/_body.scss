@@ -74,6 +74,14 @@ button {
 	}
 }
 
+.red {
+	background-color: #e53935;
+	&:hover,
+	&:focus {
+		background-color: #f44336;
+	}
+}
+
 .light {
 	background-color: #607d8b;
 	&:hover,
@@ -242,14 +250,30 @@ input:checked + .slider-round:before {
 		height: auto;
 		border-radius: 10px;
 	}
+	div {
+		border: none;
+		width: auto;
+		height: auto;
+		margin-bottom: auto;
+	}
 }
 
-#collection-img {
-	border: none;
-	width: auto;
-	height: auto;
-	margin-bottom: auto;
+#collection-btn {
+	display: none;
+	grid-template-columns: 1fr 1fr;
+	row-gap: 5px;
+	column-gap: 20px;
+	#all-del,
+	#collection-del {
+		grid-column-start: 2;
+	}
+	#collection-del,
+	#collection-add,
+	#all-del {
+		display: none;
+	}
 }
+
 #cache {
 	display: none;
 }

@@ -102,6 +102,25 @@
 					<option value="select">Select</option>
 				</select>
 				<div id="collection-img"></div>
+				<div id="collection-btn">
+					<button
+						class="green"
+						id="collection-add"
+						onclick="swapEmail();"
+					>
+						Edit This Collection
+					</button>
+					<button
+						class="red"
+						id="collection-del"
+						onclick="deleteSelected();"
+					>
+						Delete This Collection
+					</button>
+					<button class="red" id="all-del" onclick="deleteAll();">
+						Delete All
+					</button>
+				</div>
 			</div>
 			<!-- Image cache -->
 			<div id="cache"></div>

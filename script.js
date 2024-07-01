@@ -214,6 +214,8 @@ function switchCollection(switch_email) {
 				COLL_DEL.style.display = "block";
 				ALL_DEL.style.display = "block";
 				COLL_ADD.style.display = "block";
+				COLL_ADD.innerHTML = `Edit ${emails[i]}`;
+				COLL_DEL.innerHTML = `Delete ${emails[i]}`;
 				if (emails[i] === CUR_EMAIL.innerHTML) {
 					COLL_ADD.style.display = "none";
 					// Display delete buttons

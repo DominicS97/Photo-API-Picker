@@ -367,6 +367,8 @@ button {
   color: #fff;
   border: none;
   border-radius: 3px;
+  max-width: 175px;
+  overflow-wrap: break-word;
 }
 button:hover, button:focus {
   background-color: #616161;

@@ -80,7 +80,11 @@ function repImage() {
 				SELECT.value = CUR_EMAIL.innerHTML;
 				switchCollection(CUR_EMAIL.innerHTML);
 				// Adding photo to collection and to the relevant subarray
-				COLLECTION.innerHTML += `<img src="${IMG.src}" />`;
+				let selected_collection = collections[i];
+				COLLECTION.innerHTML =
+					`<img id="img-${selected_collection.length}" src="${IMG.src}" />` +
+					`<button class="red small-btn" id="btn-${selected_collection.length}" onclick="deleteImage(${selected_collection.length});">X</button>` +
+					COLLECTION.innerHTML;
 				CACHE.innerHTML += `<img src="${IMG.src}" />`;
 				collections[i].push(IMG.src);
 				// Enable buttons
@@ -126,6 +130,10 @@ function validateEmail() {
 			CUR_EMAIL.innerHTML = `${s}`;
 			// Add to select menu
 			SELECT.innerHTML += `<option id="${s}" value="${s}">${s}</option>`;
+			// Display delete buttons
+			for (let i = 0; i < SMALL_BTNS.length; i++) {
+				SMALL_BTNS[i].style.display = "block";
+			}
 			// Create new collection
 			newCollection(s);
 		} else {
@@ -169,6 +177,10 @@ function newEmail() {
 	COLL_BTN.style.display = "none";
 	COLL_DEL.style.display = "none";
 	ALL_DEL.style.display = "none";
+	// Hide delete buttons
+	for (let i = 0; i < SMALL_BTNS.length; i++) {
+		SMALL_BTNS[i].style.display = "none";
+	}
 }
 
 // Select menu manipulation
@@ -189,7 +201,13 @@ function switchCollection(switch_email) {
 				// Adding all collection images
 				let selected_collection = collections[i];
 				for (let j = 0; j < selected_collection.length; j++) {
-					COLLECTION.innerHTML += `<img src="${selected_collection[j]}" />`;
+					if (selected_collection[j] === "removed") {
+					} else {
+						COLLECTION.innerHTML =
+							`<img id="img-${j}" src="${selected_collection[j]}" />` +
+							`<button class="red small-btn" id="btn-${j}" onclick="deleteImage(${j});">X</button>` +
+							COLLECTION.innerHTML;
+					}
 				}
 				// Enable buttons
 				COLL_BTN.style.display = "grid";
@@ -198,6 +216,15 @@ function switchCollection(switch_email) {
 				COLL_ADD.style.display = "block";
 				if (emails[i] === CUR_EMAIL.innerHTML) {
 					COLL_ADD.style.display = "none";
+					// Display delete buttons
+					for (let j = 0; j < SMALL_BTNS.length; j++) {
+						SMALL_BTNS[j].style.display = "block";
+					}
+				} else {
+					// Remove delete buttons
+					for (let j = 0; j < SMALL_BTNS.length; j++) {
+						SMALL_BTNS[j].style.display = "none";
+					}
 				}
 			}
 		}
@@ -211,12 +238,18 @@ const COLL_ADD = document.getElementById("collection-add");
 const COLL_DEL = document.getElementById("collection-del");
 const ALL_DEL = document.getElementById("all-del");
 
+const SMALL_BTNS = document.getElementsByClassName("small-btn");
+
 function swapEmail() {
 	// Remove form and show current email div
 	FORM.style.display = "none";
 	EMAIL_DISPLAY.style.display = "grid";
 	CUR_EMAIL.innerHTML = SELECT.value;
 	COLL_ADD.style.display = "none";
+	// Display delete buttons
+	for (let i = 0; i < SMALL_BTNS.length; i++) {
+		SMALL_BTNS[i].style.display = "block";
+	}
 }
 
 function deleteSelected() {
@@ -268,4 +301,20 @@ function deleteAll() {
 	document.getElementById("email").value = "";
 	// Clear select menu
 	SELECT.innerHTML = `<option value="select">Select</option>`;
+}
+
+function deleteImage(index) {
+	// Remove image from collection array
+	// Iterating over the emails array to find current email
+	for (let i = 0; i < emails.length; i++) {
+		if (emails[i] === CUR_EMAIL.innerHTML) {
+			let selected_collection = collections[i];
+			selected_collection[index] = "removed";
+		}
+	}
+	// Remove image from DOM
+	let select_element = document.getElementById(`btn-${index}`);
+	select_element.parentNode.removeChild(select_element);
+	select_element = document.getElementById(`img-${index}`);
+	select_element.parentNode.removeChild(select_element);
 }

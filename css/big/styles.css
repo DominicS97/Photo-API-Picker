@@ -393,6 +393,12 @@ button:hover, button:focus {
   background-color: #78909c;
 }
 
+.small-btn {
+  position: relative;
+  top: -35px;
+  left: 10px;
+}
+
 #photo-box {
   height: 375px;
   display: grid;

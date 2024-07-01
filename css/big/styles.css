@@ -328,12 +328,25 @@ footer p {
 }
 
 body {
-  width: 100%;
+  width: 100vw;
+  max-width: 100%;
   background-color: #e1f5fe;
   font-family: "Nunito", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+  margin: none;
 }
 body h2 {
   margin-top: auto;
+}
+
+main {
+  width: 100vw;
+  max-width: 100%;
+  margin: auto;
+  flex-grow: 1;
 }
 
 div {
@@ -396,19 +409,31 @@ button:hover, button:focus {
 
 #settings {
   display: none;
-  grid-template-columns: 1fr 1fr;
   row-gap: 5px;
   column-gap: 20px;
   margin-top: 10vh;
   height: 375px;
+  width: 400px;
+}
+#settings #set-head {
+  grid-column: span 2;
+  align-self: center;
+  padding: 15px;
+}
+#settings .label {
+  padding: 15px;
+  font-weight: bold;
 }
 #settings label,
 #settings button {
   grid-column-start: 1;
+  align-self: center;
 }
 #settings #switch,
 #settings p {
   grid-column-start: 2;
+  justify-self: center;
+  align-self: center;
 }
 
 .switch {
@@ -504,6 +529,7 @@ input:checked + .slider-round:before {
 #collection {
   width: 380px;
   padding: 15px;
+  margin-bottom: 10vh;
 }
 #collection img {
   width: 100%;
@@ -523,5 +549,33 @@ input:checked + .slider-round:before {
 }
 
 footer {
+  position: fixed;
   bottom: 0;
+}
+
+@media screen and (min-width: 992px) {
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: calc(375px + 10vh) 1fr;
+  }
+  main #photo-box,
+  main #settings,
+  main #form,
+  main #email-display {
+    grid-column-start: 1;
+    justify-self: end;
+    align-self: start;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  main #collection {
+    grid-column: 2/-1;
+    grid-row: 1/-1;
+    margin-top: 10vh;
+    justify-self: start;
+    align-self: start;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
 }/*# sourceMappingURL=styles.css.map */

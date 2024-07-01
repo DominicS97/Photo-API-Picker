@@ -572,10 +572,6 @@ input:checked + .slider-round:before {
   display: none;
 }
 
-#cache {
-  display: none;
-}
-
 footer {
   position: fixed;
   bottom: 0;

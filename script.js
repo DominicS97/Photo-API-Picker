@@ -2,9 +2,7 @@
 
 const IMG = document.getElementById("target");
 const COLLECTION = document.getElementById("collection-img");
-const CACHE = document.getElementById("cache");
-let START_IMG = IMG.src + "?random&t=";
-IMG.src = START_IMG;
+let START_IMG = IMG.src;
 
 // Image settings
 
@@ -41,29 +39,45 @@ function enableSettings() {
 	PHOTO_BOX.style.display = "none";
 }
 
+// Most recent unedited picture
+let recentImage = IMG.src;
+
 // Closes settings menu
 // New image if settings changed
 function saveSettings() {
 	SETTINGS.style.display = "none";
 	PHOTO_BOX.style.display = "grid";
-	if (change_made) {
-		change_made = false;
-		newImage();
+
+	let newImage = recentImage;
+	// Check settings
+	if (greyscale) {
+		newImage += "?grayscale";
+		if (blurnum != 0) {
+			newImage += `&blur=${blurnum}`;
+		}
+	} else {
+		if (blurnum != 0) {
+			newImage += `?blur=${blurnum}`;
+		}
 	}
+	IMG.src = newImage;
 }
 
 // Request new image
 
 function newImage() {
-	let newImage = START_IMG;
 	// Prevents browser from caching the old image
-	newImage += new Date().getTime();
-	// Check greyscale setting
+	let newImage =
+		"https://picsum.photos/seed/" + new Date().getTime() + "/400/300";
+	recentImage = newImage;
+	// Check settings
 	if (greyscale) {
-		newImage += "&grayscale";
-	}
-	if (blurnum != 0) {
-		newImage += `&blur=${blurnum}`;
+		newImage += "?grayscale";
+		if (blurnum != 0) {
+			newImage += `&blur=${blurnum}`;
+		}
+	} else if (blurnum != 0) {
+		newImage += `?blur=${blurnum}`;
 	}
 	IMG.src = newImage;
 }
@@ -85,7 +99,6 @@ function repImage() {
 					`<img id="img-${selected_collection.length}" src="${IMG.src}" />` +
 					`<button class="red small-btn" id="btn-${selected_collection.length}" onclick="deleteImage(${selected_collection.length});">X</button>` +
 					COLLECTION.innerHTML;
-				CACHE.innerHTML += `<img src="${IMG.src}" />`;
 				collections[i].push(IMG.src);
 				// Enable buttons
 				COLL_BTN.style.display = "grid";

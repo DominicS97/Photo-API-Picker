@@ -104,6 +104,7 @@ function repImage() {
 				COLL_BTN.style.display = "grid";
 				COLL_DEL.style.display = "block";
 				ALL_DEL.style.display = "block";
+				storeValues();
 			}
 		}
 	} else {
@@ -122,6 +123,7 @@ function newCollection(email) {
 	collections.push([]);
 	// Clear current collection display
 	COLLECTION.innerHTML = ``;
+	storeValues();
 }
 
 // Email validation
@@ -194,6 +196,7 @@ function newEmail() {
 	for (let i = 0; i < SMALL_BTNS.length; i++) {
 		SMALL_BTNS[i].style.display = "none";
 	}
+	storeValues();
 }
 
 // Select menu manipulation
@@ -293,6 +296,7 @@ function deleteSelected() {
 			emails.splice(i, 1);
 			// Remove collection from collections array
 			collections.splice(i, 1);
+			storeValues();
 		}
 	}
 }
@@ -316,6 +320,7 @@ function deleteAll() {
 	document.getElementById("email").value = "";
 	// Clear select menu
 	SELECT.innerHTML = `<option value="select">Select</option>`;
+	storeValues();
 }
 
 function deleteImage(index) {
@@ -332,4 +337,22 @@ function deleteImage(index) {
 	select_element.parentNode.removeChild(select_element);
 	select_element = document.getElementById(`img-${index}`);
 	select_element.parentNode.removeChild(select_element);
+	storeValues();
+}
+
+// Local storage of collections
+
+// Fetch from local storage
+if (localStorage.getItem("emails") != null) {
+	emails = JSON.parse(localStorage.getItem("emails"));
+	collections = JSON.parse(localStorage.getItem("collections"));
+	for (i = 0; i < emails.length; i++) {
+		// Add to select menu
+		SELECT.innerHTML += `<option id="${emails[i]}" value="${emails[i]}">${emails[i]}</option>`;
+	}
+}
+
+function storeValues() {
+	localStorage.setItem("emails", JSON.stringify(emails));
+	localStorage.setItem("collections", JSON.stringify(collections));
 }

@@ -25,7 +25,6 @@
 				type="text/css"
 			/>
 		</noscript>
-		<script src="script.js" defer></script>
 	</head>
 	<body>
 		<header>
@@ -37,6 +36,7 @@
 				<img
 					id="target"
 					src="https://picsum.photos/seed/dominic/400/300"
+					alt="Randomly generated photo"
 				/>
 				<hr />
 				<button onclick="newImage();">New</button>
@@ -88,7 +88,7 @@
 			<!-- Email display -->
 			<div id="email-display">
 				<h2>Email:</h2>
-				<h2 id="current-email"></h2>
+				<h2 id="current-email">Placeholder</h2>
 				<button class="light" onclick="newEmail();">
 					New Collection
 				</button>
@@ -129,5 +129,6 @@
 		<footer>
 			<p>&copy; Dominic Sutcliffe 2024</p>
 		</footer>
+		<script src="script.js"></script>
 	</body>
 </html>

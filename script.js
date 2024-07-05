@@ -86,25 +86,35 @@ function newImage() {
 
 function repImage() {
 	// Checking if an email has been set
-	if (CUR_EMAIL.innerHTML) {
+	if (CUR_EMAIL.innerHTML && CUR_EMAIL.innerHTML != "Placeholder") {
 		// Iterating over the emails array to find current email
 		for (let i = 0; i < emails.length; i++) {
 			if (emails[i] === CUR_EMAIL.innerHTML) {
-				// Set collection back to current email
-				SELECT.value = CUR_EMAIL.innerHTML;
-				switchCollection(CUR_EMAIL.innerHTML);
-				// Adding photo to collection and to the relevant subarray
+				// preventing duplicate images
 				let selected_collection = collections[i];
-				COLLECTION.innerHTML =
-					`<img id="img-${selected_collection.length}" src="${IMG.src}" />` +
-					`<button class="red small-btn" id="btn-${selected_collection.length}" onclick="deleteImage(${selected_collection.length});">X</button>` +
-					COLLECTION.innerHTML;
-				collections[i].push(IMG.src);
-				// Enable buttons
-				COLL_BTN.style.display = "grid";
-				COLL_DEL.style.display = "block";
-				ALL_DEL.style.display = "block";
-				storeValues();
+				let duplicate = false;
+				for (let j = 0; j < selected_collection.length; j++) {
+					if (IMG.src === selected_collection[j]) {
+						alert("Image already exists in collection");
+						duplicate = true;
+					}
+				}
+				if (!duplicate) {
+					// Set collection back to current email
+					SELECT.value = CUR_EMAIL.innerHTML;
+					switchCollection(CUR_EMAIL.innerHTML);
+					// Adding photo to collection and to the relevant subarray
+					COLLECTION.innerHTML =
+						`<img id="img-${selected_collection.length}" src="${IMG.src}" />` +
+						`<button class="red small-btn" id="btn-${selected_collection.length}" onclick="deleteImage(${selected_collection.length});">X</button>` +
+						COLLECTION.innerHTML;
+					collections[i].push(IMG.src);
+					// Enable buttons
+					COLL_BTN.style.display = "grid";
+					COLL_DEL.style.display = "block";
+					ALL_DEL.style.display = "block";
+					storeValues();
+				}
 			}
 		}
 	} else {
@@ -160,8 +170,6 @@ function validateEmail() {
 	} else {
 		// Regex not passed
 		alert("Email is not valid");
-		email.value = "";
-		s = "";
 	}
 }
 

@@ -371,6 +371,7 @@ function deleteImage(index) {
 			selected_collection[index] = "removed";
 		}
 	}
+	createAlert(alertWarning, "Image deleted");
 	// Remove image from DOM
 	let select_element = document.getElementById(`btn-${index}`);
 	select_element.parentNode.removeChild(select_element);

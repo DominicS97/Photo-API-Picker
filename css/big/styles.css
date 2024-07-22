@@ -401,6 +401,27 @@ button:hover, button:focus {
   left: 10px;
 }
 
+#alert-box {
+  width: 100%;
+  height: 55px;
+  background-color: #fff;
+  padding-top: 15px;
+  text-align: center;
+  position: fixed;
+  top: -50px;
+  left: 0;
+  z-index: 3;
+  border: none;
+  border-radius: 0;
+  display: none;
+  font-weight: bold;
+  color: #fff;
+}
+
+#alert-txt {
+  text-transform: uppercase;
+}
+
 #photo-box {
   height: 375px;
   display: grid;

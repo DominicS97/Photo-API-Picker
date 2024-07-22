@@ -1,3 +1,23 @@
+// Alert box
+const ALERT = document.getElementById("alert-box");
+const ALERT_TXT = document.getElementById("alert-txt");
+let alertDanger = "#f44336";
+let alertSuccess = "#4caf50";
+let alertInfo = "#2196f3";
+let alertWarning = "#ef6c00";
+function createAlert(colour, text) {
+	ALERT.style.display = "block";
+	ALERT.style.backgroundColor = colour;
+	if (colour === alertDanger || colour === alertWarning) {
+		ALERT_TXT.innerHTML = `! ${text} !`;
+	} else {
+		ALERT_TXT.innerHTML = text;
+	}
+	setTimeout(function () {
+		ALERT.style.display = "none";
+	}, 1500);
+}
+
 // Image manipulation
 
 const IMG = document.getElementById("target");
@@ -95,7 +115,10 @@ function repImage() {
 				let duplicate = false;
 				for (let j = 0; j < selected_collection.length; j++) {
 					if (IMG.src === selected_collection[j]) {
-						alert("Image already exists in collection");
+						createAlert(
+							alertDanger,
+							"Image already exists in collection"
+						);
 						duplicate = true;
 					}
 				}
@@ -109,6 +132,7 @@ function repImage() {
 						`<button class="red small-btn" id="btn-${selected_collection.length}" onclick="deleteImage(${selected_collection.length});">X</button>` +
 						COLLECTION.innerHTML;
 					collections[i].push(IMG.src);
+					createAlert(alertSuccess, "Image added to collection");
 					// Enable buttons
 					COLL_BTN.style.display = "grid";
 					COLL_DEL.style.display = "block";
@@ -118,7 +142,7 @@ function repImage() {
 			}
 		}
 	} else {
-		alert("Photo cannot be added with no Collection");
+		createAlert(alertDanger, "Photo cannot be added with no Collection");
 	}
 }
 
@@ -160,16 +184,20 @@ function validateEmail() {
 				SMALL_BTNS[i].style.display = "block";
 			}
 			// Create new collection
+			createAlert(alertSuccess, "Email is valid. Collection created");
 			newCollection(s);
 		} else {
 			// Non-unique email detected
-			alert("Collection already exists for this Email");
+			createAlert(
+				alertDanger,
+				"Collection already exists for this Email"
+			);
 			email.value = "";
 			s = "";
 		}
 	} else {
 		// Regex not passed
-		alert("Email is not valid");
+		createAlert(alertDanger, "Email is not valid");
 	}
 }
 
@@ -240,6 +268,7 @@ function switchCollection(switch_email) {
 				COLL_ADD.style.display = "block";
 				COLL_ADD.innerHTML = `Edit ${emails[i]}`;
 				COLL_DEL.innerHTML = `Delete ${emails[i]}`;
+				createAlert(alertSuccess, `Now viewing ${emails[i]}`);
 				if (emails[i] === CUR_EMAIL.innerHTML) {
 					COLL_ADD.style.display = "none";
 					// Display delete buttons
@@ -288,6 +317,7 @@ function deleteSelected() {
 			COLL_BTN.style.display = "none";
 			COLL_DEL.style.display = "none";
 			ALL_DEL.style.display = "none";
+			createAlert(alertWarning, `${emails[i]} deleted`);
 			// Remove from select menu
 			let select_element = document.getElementById(`${emails[i]}`);
 			select_element.parentNode.removeChild(select_element);
@@ -329,6 +359,7 @@ function deleteAll() {
 	// Clear select menu
 	SELECT.innerHTML = `<option value="select">Select</option>`;
 	storeValues();
+	createAlert(alertWarning, `All collections deleted`);
 }
 
 function deleteImage(index) {

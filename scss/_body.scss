@@ -98,6 +98,28 @@ button {
 	left: 10px;
 }
 
+// Alerts
+
+#alert-box {
+	width: calc(100%);
+	height: 55px;
+	background-color: #fff;
+	padding-top: 15px;
+	text-align: center;
+	position: fixed;
+	top: -50px;
+	left: 0;
+	z-index: 3;
+	border: none;
+	border-radius: 0;
+	display: none;
+	font-weight: bold;
+	color: #fff;
+}
+
+#alert-txt {
+	text-transform: uppercase;
+}
 // Image box
 
 #photo-box {

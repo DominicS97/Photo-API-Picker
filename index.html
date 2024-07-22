@@ -48,7 +48,7 @@
 			<!-- Settings menu -->
 			<div id="settings">
 				<h2 id="set-head">Settings</h2>
-				<label class="label">Greyscale:</label>
+				<label class="label" for="greyscale">Greyscale:</label>
 				<label class="switch" id="switch">
 					<input
 						type="checkbox"
@@ -57,7 +57,7 @@
 					/>
 					<span class="slider-round"></span>
 				</label>
-				<label class="label">Blur:</label>
+				<label class="label" for="blur-range">Blur:</label>
 				<input
 					type="range"
 					min="0"
@@ -76,7 +76,7 @@
 			<div id="form">
 				<form>
 					<label for="email">Email:</label>
-					<input name="email" id="email" />
+					<input name="email" id="email" autocomplete="email" />
 					<button
 						class="green"
 						onClick="validateEmail(); return false"
